@@ -1,0 +1,12 @@
+dataset: tinystories
+model_size: small_35m
+context_length: 512
+batch_size: 16
+grad_accum: 16
+max_tokens: 50000000
+eval_interval: 500
+geometry_interval: 2000
+sample_interval: 2000
+save_every: 2000
+dtype: bf16
+compile: false

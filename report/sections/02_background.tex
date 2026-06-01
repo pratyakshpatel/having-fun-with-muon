@@ -1,0 +1,7 @@
+\section{Background}
+
+AdamW is the baseline optimizer for these experiments. It applies adaptive moment estimates with decoupled weight decay and remains a strong default for transformer pretraining.
+
+Muon is an optimizer for hidden matrices that applies momentum and then approximately orthogonalizes the update using a Newton--Schulz iteration \cite{muon_github,muon_writeup}. The motivation is that a matrix update should not concentrate all of its energy in a small number of directions when the parameter itself is a learned linear map.
+
+Routing matters because transformer matrices do not play equivalent roles. Q/K projections determine attention scores, V/O projections move information through attention, and MLP matrices dominate much of the model's nonlinear capacity. Applying the same optimizer to each of these matrices may be unnecessary or even suboptimal.

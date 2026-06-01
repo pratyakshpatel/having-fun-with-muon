@@ -1,0 +1,44 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{longtable}
+\usepackage{placeins}
+
+\title{\textbf{Muon Routing Atlas:}\\Which Transformer Parameters Benefit from Orthogonalized Optimization?}
+\author{Pratyaksh Patel}
+\date{\today}
+
+\newcommand{\maybeincludegraphics}[2][]{%
+  \IfFileExists{#2}{\includegraphics[#1]{#2}}{\fbox{\parbox{0.88\linewidth}{No completed runs were found for this figure at report generation time.}}}%
+}
+\newcommand{\maybetable}[1]{%
+  \IfFileExists{#1}{\input{#1}}{\begin{center}No completed runs were found for this table at report generation time.\end{center}}%
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+I wanted to understand whether Muon's advantage comes from all transformer matrices or from a smaller subset of modules. I treated the optimizer assignment itself as the experimental variable and built a routing harness around small GPT-style pretraining runs. This report is generated directly from local run artifacts; when an experiment has not been run yet, I state that rather than inventing results.
+\end{abstract}
+
+\input{sections/01_intro}
+\input{sections/02_background}
+\input{sections/03_method}
+\input{sections/04_experiments}
+\input{sections/05_results}
+\input{sections/06_geometry}
+\input{sections/07_qualitative}
+\input{sections/08_limitations}
+\input{sections/09_conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}

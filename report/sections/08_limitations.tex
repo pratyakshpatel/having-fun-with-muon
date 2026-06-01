@@ -1,0 +1,7 @@
+\section{Discussion and Limitations}
+
+The main question is whether full-hidden Muon is necessary, or whether no-QK, MLP-only, or V/O-only routing is competitive. If the routed configurations match full-hidden Muon on validation loss and wall-clock efficiency, that would suggest that optimizer design can be more module-aware than a blanket assignment.
+
+The limitations are substantial. The models are small, the experiments are single-GPU, the seed count is limited, and the token budgets are short relative to serious pretraining. TinyStories is synthetic and can reward behavior that does not transfer to broad web text. The hyperparameter budget is deliberately small, so I interpret the results as controlled evidence rather than a global optimizer ranking.
+
+Future versions should test larger models, more seeds, additional architectures such as Mamba or other state-space models, adaptive Muon routing, and more explicit Q/K stabilization.

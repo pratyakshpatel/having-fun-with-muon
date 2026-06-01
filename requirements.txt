@@ -1,0 +1,17 @@
+--extra-index-url https://download.pytorch.org/whl/cu124
+torch==2.6.0
+numpy
+pandas
+matplotlib
+tqdm
+pyyaml
+datasets
+fsspec[http]==2026.2.0
+huggingface_hub
+tokenizers
+tiktoken
+safetensors
+einops
+rich
+psutil
+GPUtil

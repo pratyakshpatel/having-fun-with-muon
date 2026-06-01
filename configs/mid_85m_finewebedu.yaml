@@ -1,0 +1,12 @@
+dataset: fineweb_edu_10bt
+model_size: mid_85m
+context_length: 512
+batch_size: 8
+grad_accum: 16
+max_tokens: 200000000
+eval_interval: 1000
+geometry_interval: 5000
+sample_interval: 5000
+save_every: 5000
+dtype: bf16
+compile: false

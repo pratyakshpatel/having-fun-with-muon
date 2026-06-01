@@ -1,0 +1,13 @@
+\section{Experiments}
+
+\subsection{Stage 1: TinyStories Routing Sweep}
+This stage compares AdamW, full-hidden Muon, MLP-only Muon, attention-only Muon, V/O-only Muon, Q/K-only Muon, and no-QK Muon on TinyStories with two seeds.
+
+\subsection{Stage 2: FineWeb-Edu Serious Comparison}
+This stage repeats the most important comparisons on FineWeb-Edu sample-10BT with the mid-sized model. The default token budget is 200M tokens, with support for longer 500M or 1B token runs.
+
+\subsection{Stage 3: Layerwise Atlas}
+This stage asks whether early, middle, or late transformer blocks benefit more from Muon, and includes late-only MLP and late-only V/O variants.
+
+\subsection{Stage 4: Batch-Size Stress Test}
+This stage compares AdamW, full-hidden Muon, and the best routed Muon configuration across larger effective batch sizes.

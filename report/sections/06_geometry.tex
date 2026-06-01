@@ -1,0 +1,35 @@
+\section{Update Geometry}
+
+For each routed hidden matrix, I log gradient norm, update norm, weight norm, update-to-weight ratio, top singular value, effective rank, and orthogonality error. Effective rank is computed from normalized singular values \(p_i=s_i/\sum_j s_j\) as
+\[
+\exp\left(-\sum_i p_i \log p_i\right).
+\]
+Orthogonality error is computed from \(UU^\top\) or \(U^\top U\), depending on which side is smaller.
+
+\begin{figure}[ht]
+\centering
+\maybeincludegraphics[width=0.95\linewidth]{figures/update_effective_rank_by_module.png}
+\caption{Effective rank by module and routing mode.}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\maybeincludegraphics[width=0.95\linewidth]{figures/update_norm_by_module.png}
+\caption{Update norm by module and routing mode.}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\maybeincludegraphics[width=0.95\linewidth]{figures/singular_value_spectrum_examples.png}
+\caption{Example singular-value spectra.}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\maybeincludegraphics[width=0.95\linewidth]{figures/qk_logit_growth.png}
+\caption{Q/K-related stability diagnostic.}
+\end{figure}
+
+\FloatBarrier
+
+The geometry plots are intended to show whether Muon spreads update energy across singular directions, and whether that behavior differs between Q/K, V/O, and MLP matrices.

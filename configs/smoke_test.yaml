@@ -1,0 +1,12 @@
+dataset: tinystories
+model_size: smoke
+context_length: 128
+batch_size: 8
+grad_accum: 2
+max_tokens: 1000000
+eval_interval: 50
+geometry_interval: 100
+sample_interval: 100
+save_every: 100
+dtype: bf16
+compile: false

@@ -1,0 +1,7 @@
+\section{Introduction}
+
+I wanted to understand whether Muon's advantage comes from applying orthogonalized updates to every hidden transformer matrix, or whether most of the gain comes from a smaller subset of modules. The practical version of the question matters: if only feed-forward matrices or value/output attention projections need Muon, then the optimizer can be simpler, cheaper to reason about, and less likely to disturb fragile parts of the model.
+
+The core hypothesis I tested is that Muon may not need to be applied to every hidden matrix. In particular, FFN and V/O matrices may recover much of the gain, while Q/K projections may be less uniformly helpful because they directly shape attention logits and can interact with stability in a different way.
+
+To test this, I treated optimizer routing as the experimental variable. The model, data pipeline, token budget, logging, sampling prompts, and evaluation protocol are kept fixed within each stage, while the set of matrices assigned to Muon changes.

@@ -1,0 +1,20 @@
+\section{Method}
+
+\subsection{Model}
+I use decoder-only GPT-style transformers with token embeddings, learned positional embeddings, RMSNorm, causal self-attention, and SwiGLU MLPs. Each block exposes explicit parameter names such as \texttt{blocks.3.attn.q\_proj.weight}, \texttt{blocks.3.attn.v\_proj.weight}, and \texttt{blocks.3.mlp.down\_proj.weight}. This naming is part of the experimental design because optimizer assignment is defined over named parameters.
+
+\subsection{Datasets}
+TinyStories is used for fast routing ablations \cite{tinystories}. FineWeb-Edu sample-10BT is used for the more serious comparison \cite{fineweb}. FineWeb-Edu is loaded through Hugging Face streaming and can be pre-tokenized into deterministic binary shards \cite{hf_streaming}.
+
+\subsection{Optimizer Routing}
+The routing modes are: AdamW everywhere; Muon on all hidden matrices; Muon only on MLP matrices; Muon only on attention matrices; Muon only on V/O matrices; Muon only on Q/K matrices; Muon on everything except Q/K; and layer-restricted early, middle, and late variants.
+
+Embeddings, the language-model head, norms, and biases are always handled by AdamW. Muon is allowed only on selected two-dimensional hidden matrices. Each run writes \texttt{optimizer\_groups.json} before training starts.
+
+\subsection{Training Protocol}
+The tokenizer is GPT-2 BPE. The dataloader returns next-token batches where \(x=t_i,\ldots,t_{i+B-1}\) and \(y=t_{i+1},\ldots,t_{i+B}\). I use cosine learning-rate decay with warmup, gradient clipping, mixed precision when available, periodic validation, checkpoints, geometry logging, and deterministic generation prompts.
+
+\subsection{Fair Tuning Protocol}
+I kept the tuning budget small and equal across optimizer families. I therefore treat the results as controlled evidence, not as a final statement about the global best hyperparameters.
+
+\maybetable{tables/hyperparameters.tex}
